@@ -67,6 +67,11 @@ lalu pada bagian if tinggal sama kan dengan path /hello maka akan mengakses hell
 Ketika mengakses "/sleep", server akan mengalami penundaan selama 5 detik sebelum konten dari "/hello" . Penundaan ini disebabkan oleh penggunaan fungsi thread::sleep(Duration::from_secs(5)); dalam kode program. Fungsi ini memaksa thread eksekusi untuk diam selama periode waktu yang ditentukan sebelum melanjutkan eksekusi program. Oleh karena itu, ketika mengakses "/sleep", server akan menunda respon selama 5 detik sebelum dapat memberikan konten "/hello". Sementara itu, ketika mengakses "/hello", tidak ada perintah penundaan, sehingga server dapat langsung memberikan konten kepada pengguna tanpa ada penundaan tambahan. Ini menyebabkan perbedaan dalam kecepatan respons antara dua akses tersebut. Dengan demikian, penggunaan fungsi thread::sleep mengakibatkan penundaan dalam memberikan respons, sementara akses yang tidak melibatkan penundaan dapat memberikan respons secara langsung.
 
 
+# Commit 5 Reflection Notes
+
+ThreadPool multi-threaded memungkinkan eksekusi tugas-tugas secara paralel di beberapa thread, meningkatkan kinerja aplikasi dengan menggunakan sumber daya CPU yang tersedia secara lebih efisien. Dengan ThreadPool, aplikasi dapat tetap responsif terhadap peristiwa eksternal seperti interaksi pengguna atau permintaan jaringan tanpa menghalangi thread utama. Ini sangat bermanfaat dalam aplikasi yang membutuhkan pengolahan data besar, pemrosesan real-time, atau pengelolaan koneksi jaringan dalam lingkungan server. Penggunaan ThreadPool membantu mengoptimalkan penggunaan sumber daya, seperti CPU, memori, dan IO, dengan menangani tugas-tugas secara paralel tanpa perlu menunggu tugas sebelumnya selesai. Secara keseluruhan, ThreadPool memberikan cara yang efisien untuk meningkatkan responsivitas, kinerja, dan efisiensi aplikasi dalam pengolahan tugas-tugas secara bersamaan. Threadpool ini bisa dibuat dengan mudah menggunakan bahasa rust.
+
+
 
 
 
