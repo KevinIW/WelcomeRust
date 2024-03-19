@@ -73,7 +73,12 @@ ThreadPool multi-threaded memungkinkan eksekusi tugas-tugas secara paralel di be
 
 
 
+# Commit bonus
 
+Penggunaan build function dalam membuat instance ThreadPool menawarkan pendekatan yang lebih fungsional dan ekspresif dalam kode. Dengan build, kita menggunakan fungsi tingkat tinggi seperti map dan collect untuk membuat instance ThreadPool dengan lebih ringkas. Ini mengurangi kebutuhan akan kode boilerplate dan membuat implementasi lebih mudah dibaca dan dipahami. Selain itu, build function memungkinkan kita untuk menambahkan validasi langsung seperti assert!, meningkatkan keamanan dan kemudahan dalam menangani error. Namun, tanpa build function, kita bisa menggunakan pendekatan imperatif yang lebih tradisional, yang mungkin lebih sesuai dengan preferensi atau gaya pemrograman tertentu. Keputusan untuk menggunakan build function atau tidak tergantung pada kompleksitas proyek, preferensi pribadi, dan gaya pengkodean tim.
+
+Dengan menggunakan ini maka worker yang ada sblmnnya dan sesudah ditambahkan akan lebih teratur. cth sblmnya workernya bisa dari 0 ke 2 ke 3 ke 1 tidak teratur tp sesudah ditambahkan akan menjadi seperti ini:
+[image3](commit6.png)
 
 
 

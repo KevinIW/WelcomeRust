@@ -27,6 +27,21 @@ impl ThreadPool {
         ThreadPool { workers, sender }
     }
 
+    // New build function
+    pub fn build(size: usize) -> ThreadPool {
+        assert!(size > 0);
+
+        let (sender, receiver) = mpsc::channel();
+
+        let receiver = Arc::new(Mutex::new(receiver));
+
+        let workers: Vec<Worker> = (0..size)
+            .map(|id| Worker::new(id, Arc::clone(&receiver)))
+            .collect();
+
+        ThreadPool { workers, sender }
+    }
+
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,
