@@ -3,7 +3,7 @@
 <summary>Modul 6</summary>
 
 # Commit 1 Reflection notes
-Kode Rust tersebut merupakan implementasi dari sebuah server TCP sederhana yang pake listener saat let listener koneksi masuk pada IP 127.0.0.1:7878 dan menangani setiap koneksi dengan membaca permintaan HTTP per baris di function handle_request. Saat koneksi baru diterima, server membaca setiap baris permintaan HTTP (buffreader) secara berturut-turut hingga menemui baris kosong yang menandakan akhir dari request. Selanjutnya, server mencetak reqyest HTTP tersebut ke komputer.  
+Kode Rust tersebut merupakan implementasi dari sebuah server TCP sederhana yang pake listener saat let listener koneksi masuk pada IP 127.0.0.1:7878. Ia dapat menangani setiap koneksi dengan membaca permintaan HTTP per baris di function handle_request. Saat koneksi baru diterima, server membaca setiap baris permintaan HTTP (buffreader) secara berturut-turut hingga menemui baris kosong yang menandakan akhir dari request. Selanjutnya, server mencetak request HTTP tersebut ke komputer. Di kode tersebut saat di loop akan menghandle request. Jadi bisa beberapa request yang dijalankan menghasilkan hasil yang berbeda.
 
 
 # Commit 2 Reflection notes
@@ -63,6 +63,15 @@ lalu pada bagian if tinggal sama kan dengan path /hello maka akan mengakses hell
 </br>
 
 # Commit 4 Reflection Notes
+
+Ketika mengakses "/sleep", server akan mengalami penundaan selama 5 detik sebelum konten dari "/hello" . Penundaan ini disebabkan oleh penggunaan fungsi thread::sleep(Duration::from_secs(5)); dalam kode program. Fungsi ini memaksa thread eksekusi untuk diam selama periode waktu yang ditentukan sebelum melanjutkan eksekusi program. Oleh karena itu, ketika mengakses "/sleep", server akan menunda respon selama 5 detik sebelum dapat memberikan konten "/hello". Sementara itu, ketika mengakses "/hello", tidak ada perintah penundaan, sehingga server dapat langsung memberikan konten kepada pengguna tanpa ada penundaan tambahan. Ini menyebabkan perbedaan dalam kecepatan respons antara dua akses tersebut. Dengan demikian, penggunaan fungsi thread::sleep mengakibatkan penundaan dalam memberikan respons, sementara akses yang tidak melibatkan penundaan dapat memberikan respons secara langsung.
+
+
+
+
+
+
+
 
 
 

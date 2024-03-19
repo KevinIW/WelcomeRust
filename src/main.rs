@@ -1,8 +1,6 @@
 use std::{
     
-    io::{prelude::*, BufReader},
-    net::{TcpListener, TcpStream},
-    fs,
+    fs, io::{prelude::*, BufReader}, net::{TcpListener, TcpStream}, thread, time::Duration
 };
 
 fn main() {
@@ -34,9 +32,13 @@ fn handle_connection(mut stream: TcpStream) {
     let status_line;
     let contents;
 
-    // Check if the request method is GET and if the path is "/hello"
-    if request_method == Some("GET") && path == "/hello" {
+    // Check if the request method is GET and if the path is "/hello" or "/sleep"
+    if request_method == Some("GET") && (path == "/hello" || path == "/sleep") {
         status_line = "HTTP/1.1 200 OK";
+        // Add a 5-second delay if the path is "/sleep"
+        if path == "/sleep" {
+            thread::sleep(Duration::from_secs(5));
+        }
         contents = fs::read_to_string("src/templates/hello.html").unwrap_or_else(|_| {
             String::from("<html><body><h1>404 Not Found</h1></body></html>")
         });
