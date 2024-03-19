@@ -32,7 +32,37 @@ Kode ini membuat respons HTTP dengan menggunakan format string. Variabel status_
 stream.write_all(response.as_bytes()).unwrap();
 Kode ini menuliskan respons yang telah dibuat ke dalam stream. .as_bytes() digunakan untuk mengonversi respons dari tipe String menjadi slice byte. 
 
+# Commit 3 Reflection Notes
 
+[image2](commit3.png)
+
+Pada kali ini jika mengakses link selain dari /hello maka akan menimbulkan bad request. Dengan melakukan refactoring hanya menambahkan bad.html pada templates dan mengubah request method. Kita harus menggunakan refactoring karena mempercepat pengerjaan dan menghemat waktu dari berbagai potensi bug. 
+
+Pada kode let request method pertama memecah url sehingga mendapatkan requestnya serta pathnya. 
+
+<br>let (request_method, path) = if let Some(first_line) = http_request.first() {
+        let mut parts = first_line.split_whitespace();
+        let method = parts.next();
+        let path = parts.next().unwrap_or("/");
+        (method, path)
+    } else {
+        (None, "/")
+    };</br>
+
+lalu pada bagian if tinggal sama kan dengan path /hello maka akan mengakses hello.html
+
+<br> // Check if the request method is GET and if the path is "/hello"
+    if request_method == Some("GET") && path == "/hello" {
+        status_line = "HTTP/1.1 200 OK";
+        contents = fs::read_to_string("src/templates/hello.html").unwrap
+        });
+    } else {
+        status_line = "HTTP/1.1 400 Bad Request";
+        contents = fs::read_to_string("src/templates/bad.html").unwrap_or_else(|_| {
+            
+</br>
+
+# Commit 4 Reflection Notes
 
 
 
